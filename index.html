@@ -122,10 +122,10 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img src="static/images/CODE_overview.png" alt="Overview"/>
+      <img src="static/images/CODE.gif" alt="gif"/>
       <!-- <h2 class="subtitle has-text-centered"> -->
         <strong>CODE</strong>
-        After LMMs generate a comprehensive description for the visual content by themselves, the model recursively outputs logits from each the visual content and the description. By contrasting between two log-likelihoods, CODE produces more contextual and correct responses that match the given visual content suppressing inconsistent words (&ldquo;catching&rdquo; &rarr; &ldquo;hit&rdquo;).
+        We introduce a novel decoding method, COuntering DEscription Contrastive Decoding (CODE).
       </h2>
     </div>
   </div>
@@ -167,7 +167,26 @@
 </section>
 <!-- End paper abstract -->
 
-<!-- Overview -->
+
+<!-- overview -->
+<section class="hero is-small">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+      <h2 class="title is-3">CODE Overview</h2>
+        <div class="hero-body">
+          <img src="static/images/CODE_overview.png" alt="Overview"/>
+          <h2 class="content has-text-justified">
+            After LMMs generate a comprehensive description for the visual content by themselves, the model recursively outputs logits from each the visual content and the description. By contrasting between two log-likelihoods, CODE produces more contextual and correct responses that match the given visual content suppressing inconsistent words (&ldquo;catching&rdquo; &rarr; &ldquo;hit&rdquo;).
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- performance -->
 <section class="hero is-small">
   <div class="container">
     <div class="columns is-centered">
@@ -183,26 +202,6 @@
     </div>
   </div>
 </section>
-
-
-
-<!-- performance -->
-<section class="hero is-small">
-  <div class="container">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-      <h2 class="title is-3">Performance Comparison</h2>
-        <div class="hero-body">
-          <img src="static/images/performance.png" alt="Comparison"/>
-          <h2 class="content has-text-justified">
-            Comprehensive experimental results across on 6 baseline LMMs, 6 decoding method, and 6 hallucination benchmarks in spider chart format.
-          </h2>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 <!-- Image carousel -->
 <section class="hero is-small">
