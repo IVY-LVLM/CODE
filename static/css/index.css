@@ -133,5 +133,10 @@ body {
   font-size: smaller;
 }
 
+.centered-image {
+  display: block;      /* Aligns image to the left edge of the container by default */
+  margin-left: auto;   /* Auto margin on the left pushes the image to the center */
+  margin-right: auto;  /* Auto margin on the right maintains the center alignment */
+}
 
 
