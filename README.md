@@ -1,48 +1,157 @@
-# Academic Project Page Template
-This is an academic paper project page template.
+# CODE: Contrasting Self-generated Description to Combat Hallucination in Large Multi-modal Models [[Project](https://github.com/IVY-LVLM/CODE/)][[arXiv](https://arxiv.org/abs/2406.01920)]
+
+Official implementation of ['CODE: Contrasting Self-generated Description to Combat Hallucination in Large Multi-modal Models'](https://arxiv.org/abs/2406.01920).
+![image](https://github.com/user-attachments/assets/19a834f2-f4da-47ae-bf19-2d9fb6e19fa9)
 
 
-Example project pages built using this template are:
-- https://vision.huji.ac.il/spectral_detuning/
-- https://vision.huji.ac.il/podd/
-- https://dreamix-video-editing.github.io
-- https://vision.huji.ac.il/conffusion/
-- https://vision.huji.ac.il/3d_ads/
-- https://vision.huji.ac.il/ssrl_ad/
-- https://vision.huji.ac.il/deepsim/
+## :page_facing_up: Table of contents
 
+- [Abstract](#pencil2-abstract)
+- [Environment Setup](#eyes-environment-setup)
+- [Default Setting](#clap-default-setting)
+- [Project Structure](#house-project-structure)
+- [Evaluate Models on Benchmarks](#hammer-evaluate-models-on-benchmarks)
+- [Download Datasets](#arrow_down-download-datasets)
 
+## :pencil2: Abstract
+Large Multi-modal Models (LMMs) have recently demonstrated remarkable abilities in visual context understanding and coherent response generation. However, alongside these advancements, the issue of hallucinations has emerged as a significant challenge, producing erroneous responses that are unrelated to the visual contents. In this paper, we introduce a novel contrastive-based decoding method, COuntering DEscription Contrastive Decoding (CODE), which leverages self-generated descriptions as contrasting references during the decoding phase of LMMs to address hallucination issues. CODE utilizes the comprehensive descriptions from model itself as visual counterpart to correct and improve response alignment with actual visual content. By dynamically adjusting the information flow and distribution of next-token predictions in the LMM's vocabulary, CODE enhances the coherence and informativeness of generated responses. Extensive experiments demonstrate that our method significantly reduces hallucinations and improves cross-modal consistency across various benchmarks and cutting-edge LMMs. Our method provides a simple yet effective decoding strategy that can be integrated to existing LMM frameworks without additional training.
 
-## Start using the template
-To start using the template click on `Use this Template`.
+## :eyes: Environment Setup
 
-The template uses html for controlling the content and css for controlling the style. 
-To edit the websites contents edit the `index.html` file. It contains different HTML "building blocks", use whichever ones you need and comment out the rest.  
+```bash
+conda create -n code -y python=3.9
+conda activate code
 
-**IMPORTANT!** Make sure to replace the `favicon.ico` under `static/images/` with one of your own, otherwise your favicon is going to be a dreambooth image of me.
+# install packaging, pytorch
+pip3 install packaging torch torchvision torchaudio
 
-## Components
-- Teaser video
-- Images Carousel
-- Youtube embedding
-- Video Carousel
-- PDF Poster
-- Bibtex citation
+# install dependencies
+pip install -r requirements.txt
+pip install -e transformers
+```
 
-## Tips:
-- The `index.html` file contains comments instructing you what to replace, you should follow these comments.
-- The `meta` tags in the `index.html` file are used to provide metadata about your paper 
-(e.g. helping search engine index the website, showing a preview image when sharing the website, etc.)
-- The resolution of images and videos can usually be around 1920-2048, there rarely a need for better resolution that take longer to load. 
-- All the images and videos you use should be compressed to allow for fast loading of the website (and thus better indexing by search engines). For images, you can use [TinyPNG](https://tinypng.com), for videos you can need to find the tradeoff between size and quality.
-- When using large video files (larger than 10MB), it's better to use youtube for hosting the video as serving the video from the website can take time.
-- Using a tracker can help you analyze the traffic and see where users came from. [statcounter](https://statcounter.com) is a free, easy to use tracker that takes under 5 minutes to set up. 
-- This project page can also be made into a github pages website.
-- Replace the favicon to one of your choosing (the default one is of the Hebrew University). 
-- Suggestions, improvements and comments are welcome, simply open an issue or contact me. You can find my contact information at [https://pages.cs.huji.ac.il/eliahu-horwitz/](https://pages.cs.huji.ac.il/eliahu-horwitz/)
+## :clap: Default Setting
 
-## Acknowledgments
-Parts of this project page were adopted from the [Nerfies](https://nerfies.github.io/) page.
+Before executing the code, you must complete the YAML file below by specifying the folder paths and API keys.
 
-## Website License
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+``` yaml
+# default_settings.yaml
+settings:
+  log_folder: <LOG FOLDER>
+  data_folder: <DATA FOLDER>
+  openai_api_key: <OPENAI API KEY>
+```
+
+## :house: Project Structure
+Here is the project structure.
+
+The project structure primarily includes four directories: benchmarks, file_utils, models, and tools. The file evaluate.py is used to perform evaluations on benchmarks, while generate_counterfactual_keywords_gpt4v.py is designated for generating counterfactual keywords using gpt4v.
+
+```
+.
+├── benchmarks                   # 6 Evaluation Benchmarks (+Chair)
+│   ├── __init__.py             
+│   ├── base_eval_dataset.py
+│   ├── coco-chair.py
+│   ├── llavabench.py
+│   ├── llava-qa90.py
+│   ├── mmhalbench.py
+│   ├── mmvp.py
+│   ├── pope.py
+│   └── realworld-qa.py
+├── file_utils
+│   ├── __pycache__
+│   └── result_file_manage.py
+├── huggingface_file           # modified huggingface code
+│   └── modules
+├── models                     # 6 Models
+│   ├── __init__.py
+│   ├── base_model.py
+│   ├── contrastive_decoding
+│   ├── emu2-chat.py
+│   ├── internlm-xc2.py
+│   ├── intern-vl.py
+│   ├── llava-model-hf.py
+│   ├── llava-next.py
+│   └── yi-vl.py
+├── default_settings.yaml
+├── evaluate.py
+├── README.md
+├── requirements.txt
+└── transformers               # modified transformers
+    ├── README.md
+    ├── setup.py
+    └── src
+```
+
+## :white_check_mark: Benchmark Folder Structure
+
+You must first prepare the benchmark dataset. According to the folder structure provided, please make sure to place the image files in the designated directories.
+
+```
+.
+├── llavabench
+│   ├── 001.jpg
+│   ├── 002.jpg
+│   └── ...
+├── llava-qa90
+│   ├── 000000020650.jpg
+│   ├── 000000034096.jpg
+│   └── ...
+├── mmhalbench
+│   ├── 10172500456_1f40b6bd38_o.jpg
+│   ├── 11715451803_24861529ab_o.jpg
+│   └── ...
+├── mmvp
+│   └── MMVP Images
+│       ├── 1.jpg
+│       ├── 2.jpg
+│       └── ...
+├── realworldqa
+│   ├── annotations.json
+│   └── images
+│       ├── 0.jpg
+│       ├── 1.jpg
+│       └── ...
+└── pope
+    ├── COCO_val2014_000000001171.jpg
+    ├── COCO_val2014_000000003845.jpg
+    └── ...
+```
+
+## :hammer: Evaluate Models on Benchmarks
+
+1. Run the evaluation code
+```bash
+# activate the environment
+conda activate CODE
+
+# evaluate <model_name> on <benchmark_name> with CODE DECODING 
+python evaluate.py --models <model_name> --datasets <benchmark_name> --alt-text --contrastive --cd_alpha <cd_alpha>
+```
+
+2. Select Counterfactual keyword file
+
+The list of log files will be displayed. 
+You can start the evaluation from the beginning by selecting the new result file. If you select the existing file, you can continue evaluation.
+```
+<<<<<=====Result file=====>>>>>
+Here's the list of result files for the given model and benchmark: 
+1. New result file
+2. llavabench_emu2-chat_results_0731_v1.jsonl
+Enter the number of your selection(1-2): 
+```
+
+3. Check the results
+
+The results will be revealed in the console or you can check the log files from the log directory.
+In default_settings.yaml, you can designate log_folder.
+
+## :arrow_down: Download Datasets
+
+- [POPE](https://github.com/RUCAIBox/POPE)
+- [MMVP](https://huggingface.co/datasets/MMVP/MMVP)
+- [LLaVA-Bench(In-the-Wild)](https://huggingface.co/datasets/liuhaotian/llava-bench-in-the-wild)
+- [MMHalBench](https://huggingface.co/datasets/Shengcao1006/MMHal-Bench)
+- [LLaVA-QA90](https://github.com/llava-rlhf/LLaVA-RLHF/tree/main/Eval/llava)
+- [Realworld-QA](https://huggingface.co/datasets/xai-org/RealworldQA)

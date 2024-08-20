@@ -1,0 +1,4 @@
+settings:
+  log_folder: <LOG FOLDER>
+  data_folder: <DATA FOLDER>
+  openai_api_key: <OPENAI API KEY>
