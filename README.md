@@ -45,7 +45,7 @@ settings:
 ## :house: Project Structure
 Here is the project structure.
 
-The project structure primarily includes four directories: benchmarks, file_utils, models, and tools. The file evaluate.py is used to perform evaluations on benchmarks, while generate_counterfactual_keywords_gpt4v.py is designated for generating counterfactual keywords using gpt4v.
+The project structure primarily includes four directories: benchmarks, file_utils, models, and tools. The file evaluate.py is used to perform evaluations on benchmarks.
 
 ```
 .
@@ -130,7 +130,7 @@ conda activate CODE
 python evaluate.py --models <model_name> --datasets <benchmark_name> --alt-text --contrastive --cd_alpha <cd_alpha>
 ```
 
-2. Select Counterfactual keyword file
+2. Select result file
 
 The list of log files will be displayed. 
 You can start the evaluation from the beginning by selecting the new result file. If you select the existing file, you can continue evaluation.
