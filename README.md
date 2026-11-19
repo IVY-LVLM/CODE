@@ -1,7 +1,12 @@
-# CODE: Contrasting Self-generated Description to Combat Hallucination in Large Multi-modal Models [[Project](https://github.com/IVY-LVLM/CODE/)][[arXiv](https://arxiv.org/abs/2406.01920)]
+# CODE: Contrasting Self-generated Description to Combat Hallucination in Large Multi-modal Models
 
-Official implementation of ['CODE: Contrasting Self-generated Description to Combat Hallucination in Large Multi-modal Models'](https://arxiv.org/abs/2406.01920).
-![image](https://github.com/user-attachments/assets/19a834f2-f4da-47ae-bf19-2d9fb6e19fa9)
+> 🎉 **CODE was accepted to NeurIPS 2024 (Main Conference Track)!**
+
+[**NeurIPS Paper**](https://papers.nips.cc/paper_files/paper/2024/hash/f1592b0d4ab737e18bb1899484d28d96-Abstract-Conference.html) · [**arXiv**](https://arxiv.org/abs/2406.01920) · [**Project Page**](https://ivy-lvlm.github.io/CODE/)
+
+Official implementation of **CODE**, a training-free decoding method that uses self-generated descriptions to reduce hallucinations in large multi-modal models.
+
+![Overview of CODE](https://github.com/user-attachments/assets/19a834f2-f4da-47ae-bf19-2d9fb6e19fa9)
 
 
 ## :page_facing_up: Table of contents
